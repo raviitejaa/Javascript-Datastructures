@@ -1,0 +1,134 @@
+<html>
+<head>
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded",function(e){
+//a map object in javascript - has to be modified and hashing has tobe applied.
+var MapEntry=function(key,value){
+	this.key=key;
+	this.value=value;
+};
+
+//to override the default toString() in javascript we need to use prototype.
+/*MapEntry.prototype.toString=function(){
+	return '{'+this.key+', '+this.value+'}';
+};*/
+
+//only for traversal if need entry removal, remove from the original map.
+/*var MapIterator=function(map){
+	this.length=map.entries.length;
+	this.currentIndex=0;
+	this.next=function(){
+		return (map.entries[this.currentIndex++]).toString();
+	};
+	this.hasNext=function(){
+		return this.currentIndex<this.length;
+	}
+};*/
+
+var Map = function(){
+	this.entries=[];
+	this.put=function(key,value){
+		if(!this.hasKey(key)){
+			this.entries.push(new MapEntry(key,value));
+		}		
+	};
+	this.hasKey=function(key){
+		for(var i=0;i<this.entries.length;i++){
+			if(this.entries[i].key===key){
+				return true;
+			}
+		}
+		return false;
+	};
+	this.get=function(key){
+		for(var i=0;i<this.entries.length;i++){
+			if(this.entries[i].key===key){
+				return this.entries[i].value;
+			}
+		}
+		return undefined;
+	};
+	this.remove=function(key){
+	//have to be tested..
+		for(var i=0;i<this.entries.length;i++){
+			if(this.entries[i].key===key){
+				this.entries.splice(i,1);
+				return true;
+			}
+		}
+		return false;
+	};
+};
+
+
+var map1=new Map();
+map1.put(1,"1");
+map1.put(1,"2");
+map1.put(2,"tejaw");
+map1.put(3,"tejaw1");
+map1.put(4,"raj");
+map1.put(5,"prabeen");
+console.log(map1);
+/*
+var iterator=new MapIterator(map1);
+	while(iterator.hasNext()){
+		console.log(iterator.next());
+	}
+
+	
+*/
+
+
+
+
+
+
+
+//Arraylist
+
+
+
+/*
+var Map = function(){
+	this.key=[];this.value=[];
+	this.put=function(key,value){
+		if(this.key.indexOf(key)==-1){
+			this.key.push(key);
+			this.value.push(value);
+		}	
+	};
+	this.get=function(key){
+		var ind=this.key.indexOf(key);
+		if(ind!=-1){
+			return this.value[ind];
+		}
+		else{
+			return undefined;
+		}
+	};
+	this.toString=function(){
+		var str='';
+		for(var i=0;i<this.key.length;i++){
+			str+='{'+this.key[i]+', '+this.value[i]+'}';
+		}
+		return str;
+	}
+
+};
+
+var map1=new Map();
+
+map1.put(1,'ravi');
+map1.put(2,'tejaw');
+map1.put(3,'aida');
+console.log(map1.toString());//default toString() method is executed here);
+console.log(map1.get(3));
+*/
+
+
+});
+</script>
+</head>
+<body>
+</body>
+</html>
